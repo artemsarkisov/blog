@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :require_same_user, only: [:edit, :update, :destroy]
   
   def index
-    @articles = Article.paginate(page: params[:page], per_page: 5)
+    @articles = Article.paginate(page: params[:page], per_page: 10)
   end
   
   def new
@@ -16,15 +16,14 @@ class ArticlesController < ApplicationController
   
   def create
     @article = Article.new(article_params)
-    @article.user = current_user
+
     if @article.save
-      flash[:success] = "Article was successfully created"
-      redirect_to article_path(@article)
+      redirect_to root_url
     else
       render 'new'
     end
   end
-  
+
   def update
     if @article.update(article_params)
       flash[:success] = "Article was successfully updated"
