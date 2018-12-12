@@ -2,9 +2,14 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :show, :destroy]
   before_action :require_user, except: [:index, :show]
 
-  
-  def index
-    @articles = Article.paginate(page: params[:page], per_page: 10)
+  def shit
+    #dfdfdf
+  end
+  # def index
+  #   @articles = Article.paginate(page: params[:page], per_page: 10)
+  # end
+  def shit2
+#dfdfdf
   end
   
   def new
@@ -25,12 +30,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    if @article.update(article_params)
-      flash[:success] = "Article was successfully updated"
-      redirect_to article_path(@article)
-    else
-      render 'edit'
-    end
+  #hyimui
   end
   
   def show
