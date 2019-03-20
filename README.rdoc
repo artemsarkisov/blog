@@ -1,3 +1,6 @@
-This is the repository for the first alpha-blog app of the Complete Ruby on Rails Developer Course
+This is the modified verison of the first alpha-blog app of the Complete Ruby on Rails Developer Course (https://www.udemy.com/the-complete-ruby-on-rails-developer-course/).
+All credit till commit #37dd8c94 goes to https://github.com/udemyrailscourse/alpha-blog.
 
+
+I created some minor things on top of that course in order to play around with Ruby, Rails, Gems, and some other things. I also use some newer version of Ruby and some libs AFAIR.
 --modified--
