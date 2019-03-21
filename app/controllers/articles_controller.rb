@@ -2,6 +2,8 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :show, :destroy]
   before_action :require_user, except: [:index, :show]
 
+  helper_method :has_duplicate_titles
+
   # def shit
   #   #dfdfdf
   # end
@@ -19,6 +21,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @article.user = current_user
 
     if @article.save
       redirect_to root_url
@@ -38,6 +41,23 @@ class ArticlesController < ApplicationController
     @article.destroy
     flash[:danger] = "Article was successfully deleted"
     redirect_to articles_path
+  end
+
+  def has_duplicate_titles
+    foo = 0
+    found = false
+    @articles.limit(1000).each do |article|
+      next unless logged_in? && (current_user.admin? || article.user == current_user)
+      @articles.limit(1000).each do |article2|
+        next unless logged_in? && (current_user.admin? || article2.user == current_user)
+        if article.user == article2.user && article.title == article2.title && article != article2
+          foo += 1
+          found = true
+        end
+      end
+    end
+    $stderr << foo
+    found
   end
 
   private
