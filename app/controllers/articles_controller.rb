@@ -2,10 +2,6 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :show, :destroy]
   before_action :require_user, except: [:index, :show]
 
-  # def shit
-  #   #dfdfdf
-  # end
-
   def index
     @articles = Article.paginate(page: params[:page], per_page: 10)
   end
@@ -28,7 +24,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    #hyimui
   end
 
   def show
